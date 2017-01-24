@@ -66,6 +66,7 @@ typealias StaticMatrix{T} StaticArray{T, 2}
 @inline convert{SA<:StaticArray}(::Type{SA}, x1) = SA((x1,))
 
 # this covers most conversions and "statically-sized reshapes"
+@inline convert{SA<:StaticArray}(::Type{SA}, sa::SA) = sa
 @inline convert{SA<:StaticArray}(::Type{SA}, sa::StaticArray) = SA(Tuple(sa))
 
 @generated function convert{SA<:StaticArray}(::Type{SA}, a::AbstractArray)
